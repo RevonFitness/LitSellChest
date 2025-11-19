@@ -72,12 +72,25 @@ public class SellChestCommand extends BaseCommand {
     @Permission("litsellchest.admin.reload")
     @SubCommand("reload")
     public void reload(CommandSender sender) {
-        ChestHandler chestHandler = ChestHandler.getInstance();
+        // Get the main plugin instance
+        LitSellChest plugin = LitSellChest.getInstance();
+        
+        // Reload the main config.yml file
+        plugin.reloadConfig();
+        
+        // Reload ConfigHandler (messages, settings, GUI files, etc.)
         ConfigHandler configHandler = ConfigHandler.getInstance();
-
+        configHandler.reload();
+        
+        // Reload GUI configurations
+        GUIHandler guiHandler = GUIHandler.getInstance();
+        guiHandler.reload();
+        
+        // Reload chest types and restart task
+        ChestHandler chestHandler = ChestHandler.getInstance();
         chestHandler.loadChestTypes();
         chestHandler.startTask();
+        
         configHandler.sendMessageLang(sender, "PluginReloaded");
     }
-
 }
