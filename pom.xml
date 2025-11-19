@@ -32,10 +32,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.6.0</version>
-          <configuration>
-              <minimizeJar>false</minimizeJar>
-              <outputFile>${server.directory}/LitSellChest.jar</outputFile>
-          </configuration>
         <executions>
           <execution>
             <phase>package</phase>
@@ -43,6 +39,18 @@
               <goal>shade</goal>
             </goals>
               <configuration>
+                  <minimizeJar>false</minimizeJar>
+                  <createDependencyReducedPom>false</createDependencyReducedPom>
+                  <filters>
+                      <filter>
+                          <artifact>*:*</artifact>
+                          <excludes>
+                              <exclude>META-INF/*.SF</exclude>
+                              <exclude>META-INF/*.DSA</exclude>
+                              <exclude>META-INF/*.RSA</exclude>
+                          </excludes>
+                      </filter>
+                  </filters>
                   <relocations>
                       <relocation>
                           <pattern>org.bstats</pattern>
@@ -51,6 +59,10 @@
                       <relocation>
                           <pattern>dev.triumphteam.cmd</pattern>
                           <shadedPattern>me.waterarchery.litsellchest.libs.cmd</shadedPattern>
+                      </relocation>
+                      <relocation>
+                          <pattern>dev.triumphteam.gui</pattern>
+                          <shadedPattern>me.waterarchery.litsellchest.libs.gui</shadedPattern>
                       </relocation>
                   </relocations>
               </configuration>
