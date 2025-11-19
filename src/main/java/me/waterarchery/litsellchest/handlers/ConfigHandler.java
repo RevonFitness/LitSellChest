@@ -56,6 +56,13 @@ public class ConfigHandler {
         chests = new ConfigManager(libs, "", "chests", true);
     }
 
+    public void reload() {
+        guiFileList.clear();
+        
+        load();
+    }
+
+
     private void saveDefaultYaml(String fileName, String folder) {
         LitSellChest instance = LitSellChest.getInstance();
         File file;
