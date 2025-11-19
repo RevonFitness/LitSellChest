@@ -91,6 +91,7 @@ public class SellChestCommand extends BaseCommand {
         chestHandler.loadChestTypes();
         chestHandler.startTask();
         
-        configHandler.sendMessageLang(sender, "PluginReloaded");
+        // Send success message
+        sender.sendMessage("§7[§bLitSellChest§7] §aPlugin Reloaded Successfully!");
     }
 }
