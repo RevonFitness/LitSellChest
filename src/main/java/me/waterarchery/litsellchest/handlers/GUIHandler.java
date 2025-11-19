@@ -27,6 +27,10 @@ public class GUIHandler {
         new ConfigManager(libs, "gui", "your_chests", false);
     }
 
+    public void reload() {
+        initialize();
+    }
+
     public void openShop(Player player) {
         ShopMenu shopMenu = new ShopMenu();
         shopMenu.openAsync(player);
